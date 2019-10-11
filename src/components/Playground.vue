@@ -27,8 +27,9 @@ export default {
     })
   },
 
-  beforeCreate() {
+  beforeDestroy() {
     window.removeEventListener('resize', this.handleWindowResize)
+    this.konvaCanvas.destroy()
   },
 
   watch: {
@@ -54,6 +55,7 @@ export default {
       const { width, height } = this
       this.konvaCanvas = new KonvaCanvas(container)
       this.konvaCanvas.updateSize(width, height)
+      this.konvaCanvas.makeRandomPoints()
     },
 
     updateKonva() {
